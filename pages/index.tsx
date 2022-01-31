@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { Header } from '../components/header'
+import { List } from '../components/List'
+import { mockedItems } from '../mocks/items'
 import { PageWrapper } from '../styles/PageWrapper'
 
 const Home: NextPage = () => {
@@ -13,6 +15,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <PageWrapper>
+        <List items={mockedItems} />
       </PageWrapper>
     </>
   )
