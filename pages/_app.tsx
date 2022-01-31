@@ -1,17 +1,15 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
+import { ThemeProvider } from 'styled-components'
 import { GlobalSyles } from '../styles/GlobalStyles'
+import { theme } from '../styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <title>Todo App</title>
-        <meta name="description" content="Manage your tasks in the easiest way possible" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <GlobalSyles />
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   )
 }
