@@ -12,6 +12,7 @@ export const AddTask = (props: AddTaskProps): JSX.Element => {
     const handleSubmit = (event: SyntheticEvent) => {
         event.preventDefault()
         createTask(description)
+        setDescription('')
     }
 
     return (
@@ -19,7 +20,7 @@ export const AddTask = (props: AddTaskProps): JSX.Element => {
             <button type="submit" aria-label="Add task">
                 <i className="las la-plus" />
             </button>
-            <input type="text" value={description} onChange={(e) => { setDescription(e.target.value) }} />
+            <input type="text" value={description} onChange={(e) => { setDescription(e.target.value) }} required />
         </StyledForm>
     )
 }
