@@ -4,12 +4,11 @@ import { StyledList } from './styles'
 
 interface ListProps {
     items: ListItems,
-    calculatePendingTasks(): void,
-    updateTaskProperty(taskId: number, property: TaskProperties, value: any): void 
+    updateTaskProperty(taskId: number, property: TaskProperties, value: any): void
 }
 
 export const List = (props: ListProps): JSX.Element => {
-    const { items, calculatePendingTasks, updateTaskProperty } = props
+    const { items, updateTaskProperty } = props
 
     const renderList = () => {
 
@@ -18,7 +17,9 @@ export const List = (props: ListProps): JSX.Element => {
                 <>
                     {items.map((item) => {
                         return (
-                            <Item key={item.taskId} {...item} calculatePendingTasks={calculatePendingTasks} updateTaskProperty={updateTaskProperty} />
+                            <Item key={item.taskId} {...item}
+                                updateTaskProperty={updateTaskProperty}
+                            />
                         )
                     })}
                 </>

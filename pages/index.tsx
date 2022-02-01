@@ -35,7 +35,10 @@ const Home: NextPage = () => {
       <PageWrapper>
         <AddTask createTask={createTask} />
         <Info pendingTasks={pendingTasks} />
-        <List items={tasks} calculatePendingTasks={calculatePendingTasks} updateTaskProperty={updateTaskProperty} />
+        <List 
+          items={tasks} 
+          updateTaskProperty={updateTaskProperty} 
+        />
       </PageWrapper>
     </>
   )
