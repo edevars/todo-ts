@@ -1,31 +1,30 @@
-import { ListItems, ItemInterface } from './../types.d';
+import { createTaskInLocalStorage, deleteTaskInLocalStorage, updateTaskInLocalStorage, readTasks } from './../utils/localStorage';
+import { ListItems, TaskProperties } from './../types.d';
 import { useState, useEffect } from 'react';
 
 export const useTask = () => {
-    const LOCAL_STORAGE_NAME = 'tasks'
     const [tasks, setTasks] = useState<ListItems>([])
 
     useEffect(() => {
-        const localStorageTasks: ListItems = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_NAME)!) || [];
-        setTasks(localStorageTasks)
+        setTasks(readTasks())
     }, [])
 
+
     const createTask = (description: string) => {
-        const taskId = tasks.length + 1
-        const newArrayTasks: ListItems = [...tasks, { taskId, description, checked: false }];
-        setTasks(newArrayTasks);
-        window.localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(newArrayTasks));
-    };
+        const withCreatedTask = createTaskInLocalStorage(description)
+        setTasks([...withCreatedTask])
+    }
 
-    const removeTask = (id: number) => {
-        const localStorageTasks: ListItems = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_NAME)!);
+    const deleteTask = (taskId: number) => {
+        const withDeletedTask = deleteTaskInLocalStorage(taskId)
+        setTasks([...withDeletedTask])
+    }
 
-        const deletedFavorites = localStorageTasks.filter((task: ItemInterface) => task.taskId !== id);
+    const updateTaskProperty = (taskId: number, property: TaskProperties, value: any) => {
+        const withUpdatedTask = updateTaskInLocalStorage(taskId, property, value)
+        setTasks([...withUpdatedTask])
+    }
 
-        setTasks(deletedFavorites);
 
-        window.localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(deletedFavorites));
-    };
-
-    return { tasks, createTask, removeTask }
+    return { tasks, createTask, deleteTask, updateTaskProperty }
 }
