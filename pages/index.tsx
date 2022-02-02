@@ -7,22 +7,49 @@ import { Info } from '../components/Info'
 import { List } from '../components/List'
 import { useTask } from '../hooks/useTasks'
 import { PageWrapper } from '../styles/PageWrapper'
-import { ItemInterface } from '../types'
-
+import { ItemInterface, ListItems, TaskListType } from '../types'
 
 const Home: NextPage = () => {
 
   const { tasks, createTask, updateTaskProperty } = useTask()
-  const [pendingTasks, setPendingTasks] = useState<number>(0)
+  const [pendingTasks, setPendingTasks] = useState<ListItems>([])
+  const [completedTasks, setCompletedTasks] = useState<ListItems>([])
+  const [tasksShowed, setTasksShowed] = useState<TaskListType>("all")
 
   const calculatePendingTasks = () => {
-    const tasksToDo = tasks.filter((task: ItemInterface) => task.checked !== true).length
+    const tasksToDo = tasks.filter((task: ItemInterface) => task.checked !== true)
     setPendingTasks(tasksToDo)
+  }
+
+  const calculateCompletedTasks = () => {
+    const tasksDone = tasks.filter((task: ItemInterface) => task.checked)
+    setCompletedTasks(tasksDone)
   }
 
   useEffect(() => {
     calculatePendingTasks()
+    calculateCompletedTasks()
   }, [tasks])
+
+  const renderList = (tasksToShow: ListItems) => {
+    return (
+      <List
+        items={tasksToShow}
+        updateTaskProperty={updateTaskProperty}
+      />
+    )
+  }
+
+  const renderTasksByType = (taskType: TaskListType) => {
+    switch (taskType) {
+      case "completed":
+        return renderList(completedTasks)
+      case "todo":
+        return renderList(pendingTasks)
+      case "all":
+        return renderList(tasks)
+    }
+  }
 
   return (
     <>
@@ -34,11 +61,8 @@ const Home: NextPage = () => {
       <Header />
       <PageWrapper>
         <AddTask createTask={createTask} />
-        <Info pendingTasks={pendingTasks} />
-        <List 
-          items={tasks} 
-          updateTaskProperty={updateTaskProperty} 
-        />
+        <Info pendingTasks={pendingTasks.length} setTasksShowed={setTasksShowed} />
+        {renderTasksByType(tasksShowed)}
       </PageWrapper>
     </>
   )

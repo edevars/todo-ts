@@ -7,3 +7,5 @@ export interface ItemInterface {
 export type ListItems = Array<ItemInterface>
 
 export type TaskProperties = 'taskId' | 'description' | 'checked'
+
+export type TaskListType = "completed" | "todo" | "all";
