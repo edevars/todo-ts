@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../styles/devices';
 
 export const StyledController = styled.div`
     display: flex;
@@ -29,5 +30,10 @@ export const FilterButtons = styled.ul`
         &:hover {
             cursor: pointer;
         }
+    }
+
+
+    @media screen and ${device.laptop} {
+        display: none;
     }
 `
