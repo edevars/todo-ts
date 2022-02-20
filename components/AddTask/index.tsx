@@ -1,5 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { SyntheticEvent, useState } from 'react'
-import { StyledForm } from './styles'
+import { StyledForm, AddButton } from './styles'
 
 interface AddTaskProps {
   createTask(description: string): void
@@ -17,9 +19,6 @@ export const AddTask = (props: AddTaskProps): JSX.Element => {
 
   return (
     <StyledForm action="onSubmit" onSubmit={handleSubmit}>
-      <button type="submit" aria-label="Add task">
-        <i className="las la-plus" />
-      </button>
       <input
         type="text"
         value={description}
@@ -27,7 +26,11 @@ export const AddTask = (props: AddTaskProps): JSX.Element => {
           setDescription(e.target.value)
         }}
         required
+        placeholder="Comprar despensa"
       />
+      <AddButton type="submit" aria-label="Add task">
+        <FontAwesomeIcon icon={faPlus} />
+      </AddButton>
     </StyledForm>
   )
 }

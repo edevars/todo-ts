@@ -11,5 +11,6 @@ declare module 'styled-components' {
       error: string
     }
     gradient: string
+    gradientSecondary: string
   }
 }
