@@ -10,6 +10,11 @@ export const MenuButton = styled.button`
   left: 1rem;
   z-index: 1;
 
+  svg {
+    color: white;
+    font-size: 1.2rem;
+  }
+
   &:hover {
     cursor: pointer;
   }

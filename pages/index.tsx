@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { AddTask } from '../components/AddTask'
-import { Header } from '../components/header'
+import { Header } from '../components/Header'
 import { Menu } from '../components/Menu'
 import { List } from '../components/List'
 import { useTask } from '../hooks/useTasks'
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const { tasks, createTask, updateTaskProperty } = useTask()
   const [pendingTasks, setPendingTasks] = useState<ListItems>([])
   const [completedTasks, setCompletedTasks] = useState<ListItems>([])
-  const [tasksShowed, setTasksShowed] = useState<TaskListType>('all')
+  const [tasksShowed, setTasksShowed] = useState<TaskListType>('todo')
 
   useEffect(() => {
     const calculatePendingTasks = () => {
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header title={tasksShowed} />
       <PageWrapper>
         <AddTask createTask={createTask} />
         <Menu

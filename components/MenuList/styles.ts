@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { device } from '../../styles/devices'
 
 interface AsideProps {
   visible: boolean
@@ -8,7 +7,7 @@ interface AsideProps {
 export const StyledAside = styled.aside<AsideProps>`
   display: ${(props) => (props.visible ? 'inherit' : 'none')};
   position: absolute;
-  z-index: 1;
+  z-index: 5;
   top: 0;
   left: 0;
   height: 100vh;
@@ -75,9 +74,5 @@ export const FilterButtons = styled.ul`
         font-weight: bold;
       }
     }
-  }
-
-  @media screen and ${device.laptop} {
-    display: none;
   }
 `
