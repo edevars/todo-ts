@@ -15,19 +15,18 @@ const Home: NextPage = () => {
   const [completedTasks, setCompletedTasks] = useState<ListItems>([])
   const [tasksShowed, setTasksShowed] = useState<TaskListType>('all')
 
-  const calculatePendingTasks = () => {
-    const tasksToDo = tasks.filter(
-      (task: ItemInterface) => task.checked !== true
-    )
-    setPendingTasks(tasksToDo)
-  }
-
-  const calculateCompletedTasks = () => {
-    const tasksDone = tasks.filter((task: ItemInterface) => task.checked)
-    setCompletedTasks(tasksDone)
-  }
-
   useEffect(() => {
+    const calculatePendingTasks = () => {
+      const tasksToDo = tasks.filter(
+        (task: ItemInterface) => task.checked !== true
+      )
+      setPendingTasks(tasksToDo)
+    }
+
+    const calculateCompletedTasks = () => {
+      const tasksDone = tasks.filter((task: ItemInterface) => task.checked)
+      setCompletedTasks(tasksDone)
+    }
     calculatePendingTasks()
     calculateCompletedTasks()
   }, [tasks])
