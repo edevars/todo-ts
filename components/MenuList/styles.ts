@@ -5,16 +5,16 @@ interface AsideProps {
 }
 
 export const StyledAside = styled.aside<AsideProps>`
-  display: ${(props) => (props.visible ? 'inherit' : 'none')};
   position: absolute;
   z-index: 5;
+  left: ${(props) => (props.visible ? '0px' : '-18rem')};
   top: 0;
-  left: 0;
   height: 100vh;
   width: 18rem;
   max-width: 100vw;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: left 250ms ease-in-out;
 `
 
 export const CloseWrapper = styled.div`

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const MenuButton = styled.button`
-  position: fixed;
+  position: absolute;
   width: 2rem;
   height: 2rem;
   background: none;
