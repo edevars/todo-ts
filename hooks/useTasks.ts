@@ -1,30 +1,37 @@
-import { createTaskInLocalStorage, deleteTaskInLocalStorage, updateTaskInLocalStorage, readTasks } from './../utils/localStorage';
-import { ListItems, TaskProperties } from './../types.d';
-import { useState, useEffect } from 'react';
+import {
+  createTaskInLocalStorage,
+  deleteTaskInLocalStorage,
+  updateTaskInLocalStorage,
+  readTasks,
+} from './../utils/localStorage'
+import { ListItems, TaskProperties } from './../types.d'
+import { useState, useEffect } from 'react'
 
 export const useTask = () => {
-    const [tasks, setTasks] = useState<ListItems>([])
+  const [tasks, setTasks] = useState<ListItems>([])
 
-    useEffect(() => {
-        setTasks(readTasks())
-    }, [])
+  useEffect(() => {
+    setTasks(readTasks())
+  }, [])
 
+  const createTask = (description: string) => {
+    const withCreatedTask = createTaskInLocalStorage(description)
+    setTasks([...withCreatedTask])
+  }
 
-    const createTask = (description: string) => {
-        const withCreatedTask = createTaskInLocalStorage(description)
-        setTasks([...withCreatedTask])
-    }
+  const deleteTask = (taskId: number) => {
+    const withDeletedTask = deleteTaskInLocalStorage(taskId)
+    setTasks([...withDeletedTask])
+  }
 
-    const deleteTask = (taskId: number) => {
-        const withDeletedTask = deleteTaskInLocalStorage(taskId)
-        setTasks([...withDeletedTask])
-    }
+  const updateTaskProperty = (
+    taskId: number,
+    property: TaskProperties,
+    value: any
+  ) => {
+    const withUpdatedTask = updateTaskInLocalStorage(taskId, property, value)
+    setTasks([...withUpdatedTask])
+  }
 
-    const updateTaskProperty = (taskId: number, property: TaskProperties, value: any) => {
-        const withUpdatedTask = updateTaskInLocalStorage(taskId, property, value)
-        setTasks([...withUpdatedTask])
-    }
-
-
-    return { tasks, createTask, deleteTask, updateTaskProperty }
+  return { tasks, createTask, deleteTask, updateTaskProperty }
 }

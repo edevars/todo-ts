@@ -3,36 +3,31 @@ import { Item } from '../Item'
 import { StyledList } from './styles'
 
 interface ListProps {
-    items: ListItems,
-    updateTaskProperty(taskId: number, property: TaskProperties, value: any): void
+  items: ListItems
+  updateTaskProperty(taskId: number, property: TaskProperties, value: any): void
 }
 
 export const List = (props: ListProps): JSX.Element => {
-    const { items, updateTaskProperty } = props
+  const { items, updateTaskProperty } = props
 
-    const renderList = () => {
-
-        if (items.length !== 0) {
+  const renderList = () => {
+    if (items.length !== 0) {
+      return (
+        <>
+          {items.map((item) => {
             return (
-                <>
-                    {items.map((item) => {
-                        return (
-                            <Item key={item.taskId} {...item}
-                                updateTaskProperty={updateTaskProperty}
-                            />
-                        )
-                    })}
-                </>
+              <Item
+                key={item.taskId}
+                {...item}
+                updateTaskProperty={updateTaskProperty}
+              />
             )
-        }
-        return (
-            <p>Aun no tienes tareas</p>
-        )
+          })}
+        </>
+      )
     }
+    return <p>Aun no tienes tareas</p>
+  }
 
-    return (
-        <StyledList>
-            {renderList()}
-        </StyledList>
-    )
+  return <StyledList>{renderList()}</StyledList>
 }

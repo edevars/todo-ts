@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const StyledList = styled.ul`
-    padding: 0;
-    list-style: none;
-    width: 100%;
+  padding: 0;
+  list-style: none;
+  width: 100%;
 `
