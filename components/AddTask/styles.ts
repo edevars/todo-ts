@@ -11,6 +11,7 @@ export const StyledForm = styled.form`
     margin-right: 0.25rem;
     padding: 0rem 1rem;
     border: 2px solid ${(props) => props.theme.colors.active};
+    font-size: 1rem;
   }
 `
 
