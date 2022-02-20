@@ -60,6 +60,7 @@ const Home: NextPage = () => {
       <PageWrapper>
         <AddTask createTask={createTask} />
         <Menu
+          totalTasks={tasks.length}
           pendingTasks={pendingTasks.length}
           setTasksShowed={setTasksShowed}
         />
