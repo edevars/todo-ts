@@ -5,7 +5,8 @@ export const StyledModal = styled.div`
   z-index: 5;
   top: 10rem;
   width: 100%;
-  width: 20rem;
+  width: 16rem;
+  left: calc(50vw - 10rem);
   height: 8rem;
   padding: 2rem;
   border-radius: 1rem;
