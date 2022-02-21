@@ -8,7 +8,7 @@ const theme: DefaultTheme = {
     main: '#0000ffad',
     secondary: '#009fff',
     light: '#ffffff',
-    active: '#cfd8dc',
+    active: '#bfc1c2',
     success: '#00e676',
     error: '#ec2f4b',
   },
