@@ -32,6 +32,7 @@ export const Modal = (props: ModalProps) => {
             onChange={(event) => {
               setTaskDescription(event.target.value)
             }}
+            required
           />
           <button type="submit">Guardar</button>
         </form>
