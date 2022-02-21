@@ -58,7 +58,7 @@ const Home: NextPage = () => {
       </Head>
       <Header title={tasksShowed} />
       <PageWrapper>
-        <AddTask createTask={createTask} />
+        {tasksShowed === 'todo' && <AddTask createTask={createTask} />}
         <Menu
           totalTasks={tasks.length}
           pendingTasks={pendingTasks.length}

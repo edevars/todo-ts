@@ -30,19 +30,6 @@ export const MenuList = (props: MenuListProps): JSX.Element => {
         <li>
           <button
             onClick={() => {
-              setTasksShowed('all')
-              closeMenu()
-            }}
-          >
-            <FontAwesomeIcon icon={faClipboardCheck} />
-            <p>
-              <span>{totalTasks}</span> All
-            </p>
-          </button>
-        </li>
-        <li>
-          <button
-            onClick={() => {
               setTasksShowed('todo')
               closeMenu()
             }}
@@ -63,6 +50,19 @@ export const MenuList = (props: MenuListProps): JSX.Element => {
             <FontAwesomeIcon icon={faCheckDouble} />
             <p>
               <span>{totalTasks - pendingTasks}</span> Completed
+            </p>
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
+              setTasksShowed('all')
+              closeMenu()
+            }}
+          >
+            <FontAwesomeIcon icon={faClipboardCheck} />
+            <p>
+              <span>{totalTasks}</span> All
             </p>
           </button>
         </li>
