@@ -1,5 +1,5 @@
 import { TaskProperties } from './../types.d'
-import { ListItems } from '../types'
+import { ListItems, ItemInterface } from '../types'
 
 const LOCAL_STORAGE_NAME = 'tasks'
 
@@ -19,8 +19,9 @@ export const createTaskInLocalStorage = (description: string): ListItems => {
 
 export const deleteTaskInLocalStorage = (taskId: number): ListItems => {
   const tasks = readTasks()
-  const index = taskId - 1
-  const newArrayTasks: ListItems = tasks.splice(index, 1)
+  const newArrayTasks = tasks.filter(
+    (task: ItemInterface) => task.taskId !== taskId
+  )
   window.localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(newArrayTasks))
   return newArrayTasks
 }

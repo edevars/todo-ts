@@ -10,7 +10,7 @@ import { PageWrapper } from '../styles/PageWrapper'
 import { ItemInterface, ListItems, TaskListType } from '../types'
 
 const Home: NextPage = () => {
-  const { tasks, createTask, updateTaskProperty } = useTask()
+  const { tasks, createTask, updateTaskProperty, deleteTask } = useTask()
   const [pendingTasks, setPendingTasks] = useState<ListItems>([])
   const [completedTasks, setCompletedTasks] = useState<ListItems>([])
   const [tasksShowed, setTasksShowed] = useState<TaskListType>('todo')
@@ -32,7 +32,13 @@ const Home: NextPage = () => {
   }, [tasks])
 
   const renderList = (tasksToShow: ListItems) => {
-    return <List items={tasksToShow} updateTaskProperty={updateTaskProperty} />
+    return (
+      <List
+        items={tasksToShow}
+        updateTaskProperty={updateTaskProperty}
+        deleteTask={deleteTask}
+      />
+    )
   }
 
   const renderTasksByType = (taskType: TaskListType) => {

@@ -5,10 +5,11 @@ import { StyledList } from './styles'
 interface ListProps {
   items: ListItems
   updateTaskProperty(taskId: number, property: TaskProperties, value: any): void
+  deleteTask(taskId: number): void
 }
 
 export const List = (props: ListProps): JSX.Element => {
-  const { items, updateTaskProperty } = props
+  const { items, updateTaskProperty, deleteTask } = props
 
   const renderList = () => {
     if (items.length !== 0) {
@@ -20,6 +21,7 @@ export const List = (props: ListProps): JSX.Element => {
                 key={item.taskId}
                 {...item}
                 updateTaskProperty={updateTaskProperty}
+                deleteTask={deleteTask}
               />
             )
           })}
